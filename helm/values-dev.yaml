@@ -1,7 +1,7 @@
 deployment:
   replicas: 2
   imageURL: 090808669085.dkr.ecr.us-east-1.amazonaws.com/expense/backend
-  imageversion: IMAGE_VERSION
+  version: IMAGE_VERSION
 
 configmap:
   db_host: mysql-expense-dev.c4rewymkig5h.us-east-1.rds.amazonaws.com

@@ -5,6 +5,8 @@ pipeline {
         COMPONENT = 'backend'
         DEPLOY_TO = 'QA'
         REGION = 'us-east-1'
+        appVersion = ''
+        environment = ''
     }
     options {
         disableConcurrentBuilds ()
@@ -12,9 +14,18 @@ pipeline {
     }
     parameters {
         string(name: 'version', description: 'Please Enter the application version')
+        choice(name: 'deploy_to', choices: ['dev', 'qa', 'prod'], description: pick environment)
     }
 
     stages {
+        stage('Setup Environment') {
+            steps {
+                script{
+                    appVersion: params.version
+                    environment: params.deploy_to
+                }
+            }
+        }
         stage('Deploy') {        
             steps {
                 script{
@@ -22,6 +33,9 @@ pipeline {
                         sh """
                             aws eks update-kubeconfig --region $REGION --name expense-dev
                             kubectl get nodes
+                            cd helm
+                            sed -i 's/IAMGE_VERSION/${params.version}/g' values-${environment}.yaml
+                            cat values-${environment}.yaml
                         """
                     }
                 }

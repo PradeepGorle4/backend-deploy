@@ -34,7 +34,7 @@ pipeline {
                             aws eks update-kubeconfig --region $REGION --name expense-dev
                             kubectl get nodes
                             cd helm
-                            sed -i 's/IAMGE_VERSION/${params.version}/g' values-${environment}.yaml
+                            sed -i 's/IMAGE_VERSION/${params.version}/g' values-${environment}.yaml
                             helm upgrade --install $COMPONENT -n $PROJECT -f values-${environment}.yaml .
                         """
                     }

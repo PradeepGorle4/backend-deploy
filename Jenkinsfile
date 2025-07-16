@@ -16,7 +16,6 @@ pipeline {
 
     stages {
         stage('Deploy') {        
-            }
             steps {
                 script{
                     withAWS(region: 'us-east-1', credentials: 'aws-creds') {

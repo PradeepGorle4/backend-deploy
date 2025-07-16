@@ -1,0 +1,5 @@
+apiVersion: v2
+name: backend
+version: 1.0.0 # Chart Version
+description: This is for BACKEND deployment in expense project
+appVersion: 1.0.0 

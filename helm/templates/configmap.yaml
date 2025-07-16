@@ -1,0 +1,8 @@
+apiVersion: v1 
+kind: ConfigMap
+metadata:
+  name: backend
+  namespace: expense
+data:
+  DB_HOST: {{ .Values.configmap.db_host }}
+# It is always better to override the variables at runtime instead of rebuilding the image as we have hardcoded the env var in image

@@ -21,10 +21,8 @@ pipeline {
         stage('Setup Environment') {
             steps {
                 script{
-                    sh"""
-                        appVersion: params.version
-                        environment: params.deploy_to
-                    """
+                    appVersion = params.version
+                    environment = params.deploy_to
                 }
             }
         }

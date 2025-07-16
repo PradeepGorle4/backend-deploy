@@ -35,7 +35,7 @@ pipeline {
                             kubectl get nodes
                             cd helm
                             sed -i 's/IAMGE_VERSION/${params.version}/g' values-${environment}.yaml
-                            helm upgrade --install $backend -n $expense -f values-${environment}.yaml .
+                            helm upgrade --install $COMPONENT -n $PROJECT -f values-${environment}.yaml .
                         """
                     }
                 }
